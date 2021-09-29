@@ -74,12 +74,14 @@ class Sola:
                 senders = message_list.find_elements_by_class_name("ChatMessage__sender")
                 info["message_sender"] = senders[-1].get_attribute("innerHTML").split("<")[0]
                 info["message_sender_email"] = senders[-1].get_attribute("data-email")
+                time.sleep(5) # timer so it doesn't capture send message as new message
             except:
                 info["message_sender"] = "Unknown"
                 info["message_sender_email"] = "Unknown"
             try:
                 messages = message_list.find_elements_by_class_name("ChatMessageList__messageContainer")
                 info["message_text"] = messages[-1].find_element_by_class_name("Linkify").get_attribute("innerHTML")
+                time.sleep(5) # timer so it doesn't capture send message as new message
             except:
                 info["message_text"] = "Unknown"
         except:
